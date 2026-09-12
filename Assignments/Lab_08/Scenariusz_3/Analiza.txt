@@ -1,0 +1,78 @@
+LearnIt Analiza pcap / scenariusz 3
+
+system: Linux Ubuntu 7.0.0-30-generic na Oracle VirtualBox
+aplication: Wireshark 4.6.4.
+
+file->open->./scenario3.pcpng
+statistics->HTTP->Requests (HTTP Requests by HTTP Host)
+    na liscie uwage zwracaja trzy adresy:
+        
+        239.255.255.250:1900 
+            239.255.255.250 is the multicast address used by SSDP, 
+            which is used in the initial discovery phase of DLNA (and UPnP). 
+            UDP/1900 is also the port used by SSDP. 
+            Looks like some device is looking to connect.
+
+        205.174.165.68
+            ip.addr == 205.174.165.68
+                is empty
+            http.request.uri contains "/dv/vulnerabilities/sqli/?id=1%27+and+..."
+                %27 URL-decodes to: "'", So the request starts with: /dv/vulnerabilities/sqli/?id=1' and ...
+                That is characteristic of an SQL injection payload.
+                
+                communication starts with:
+                    9506	67.249376	172.16.0.1	192.168.10.50	HTTP	513	GET /dv/vulnerabilities/sqli/?id=1%27&Submit=Submit HTTP/1.1 
+                        Source Port: 36196
+                        Destination Port: 80
+                        Hypertext Transfer Protocol
+                            Host: 205.174.165.68\r\n
+
+                fallowe by:
+                    9508	67.253046	192.168.10.50	172.16.0.1	HTTP	596	HTTP/1.1 200 OK  (text/html)
+                        <pre>You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''1''' at line 1</pre>
+
+            Follow->HTTP Stream
+            tcp.stream eq 351
+                succesfull Three-Way-Handhske initiated by 172.16.0.1
+                fallowed by HTTP GET:
+                    9506	67.249376	172.16.0.1	192.168.10.50	HTTP	513	GET /dv/vulnerabilities/sqli/?id=1%27&Submit=Submit HTTP/1.1 
+
+        a1721f71de2b921328a5eceba0c3f1bd0.profile.icn51.cloudfront.net
+            filrt: dns.qry.name == "a1721f71de2b921328a5eceba0c3f1bd0.profile.icn51.cloudfront.net"
+                dns.qry.name == "a1721f71de2b921328a5eceba0c3f1bd0.profile.icn51.cloudfront.net"
+                    DNS Answear: Address: 52.85.122.148
+                        ip.addr == 52.85.122.148
+                            TCP: complete Three-Way-Handshake on port 80
+                                86.767442 — 52.85.122.148:80 → 192.168.10.14:61357 — TCP SYN/ACK, odpowiedź na próbę ustanowienia połączenia.
+                                86.767635 — 192.168.10.14:61357 → 52.85.122.148:80 — TCP ACK, zakończenie handshake TCP.
+                        
+
+                                [TCP Retransmission] - 
+                                    
+
+                        ip.addr == 52.85.122.148 && http.request
+                            Frame: 12452 — HTTP GET /test.png
+                            86.767635 — 192.168.10.14:61357 → 52.85.122.148:80 — HTTP GET /test.png
+                            
+                        ip.addr == 52.85.122.148 && http.Response
+                            Frame: 12823 — HTTP/1.1 200 OK
+                            87.987400 — 52.85.122.148:80 → 192.168.10.14:61357 — HTTP 200 OK, response: text/plain.
+                            
+                                "Standard Amazon AWS CloudFront Profile Experiment Response"
+
+                                The answear (text/plain) doesn not match the request (test.png)
+                                this doesn't constitutes a threat. 
+                        
+                        Fallow→TCP Stream
+                            [Stream index: 410]
+                        
+                        
+
+
+
+                Fallow→UDP Stream
+                udp.stream eq 467
+
+
+
+
