@@ -1,0 +1,41 @@
+LearnIt Assignment_003
+
+- **ps aux --sort=-%cpu | head**
+	generuję tabelę procesów i poziomu wykorzystania zasobów w momencie wywołania komendy.  
+    
+    	aux- generuję listę wszystkich procesów (format displays a detailed view of all running processes 	including user processes, system services, and background tasks.)
+    
+    	—sort=-%cpu  - sortuje tabelę malejąco po wartości użycia cpu.
+
+
+- **pstree -p**
+	wyświetla uruchomione procesy w formie drzewa. 
+	-p  - wypisuje PIDs
+
+- **lsof -p “$PID”**  - $PID = 5208
+	List Open Files. 
+	wyświetla listę aktualnie otwartych plików wraz z procesami, które ich używają.
+
+- **ps -o pid,tid,ppid,ni,pri,stat,comm -L -p "$PID**" - $PID = 5208
+	wyświetla wybrane informacje o wybranym procesie
+
+- **top -H -p "$PID"** - $PID = 5208
+	monitoruje wybrany proces w czasie rzeczywistym
+
+- **uname -a**
+	wyświetla wszystkie dostępne informacje o systemie (-a stands for “all”)
+
+- i**d && sudo -l**
+	wyświetla informacje o użytkowniku i uprawnieniach
+
+- **ss -tulpn**
+	wyświetla informacje o gniazdach sieciowych
+
+- **systemctl --type=service --state=running**
+	wyświetla listę uruchomoinych  usług
+
+- **journalctl -p warning -n 50**
+	wyświetla listę logów typu “warning”
+
+- **find /etc/systemd/system -maxdepth 2 -type f**
+	wyświtla listę plików (-type f) do głębokości 2 pokatalogów

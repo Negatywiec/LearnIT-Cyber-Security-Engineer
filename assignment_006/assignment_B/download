@@ -1,0 +1,7 @@
+*.crt
+*.csr
+*.key
+*.pem
+*.srl
+!.gitignore
+!*.cnf

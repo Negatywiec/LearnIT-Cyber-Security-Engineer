@@ -1,0 +1,25 @@
+services:
+  backend:
+    image: python:3-alpine
+    working_dir: /app
+    command: ["python", "server.py"]
+    environment:
+      BACKEND_ID: backend-01
+      PORT: "9000"
+    volumes:
+      - ./backend:/app:ro
+    expose:
+      - "9000"
+
+  nginx:
+    image: nginx:stable-alpine
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/includes:/etc/nginx/includes:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./www:/usr/share/nginx/html:ro

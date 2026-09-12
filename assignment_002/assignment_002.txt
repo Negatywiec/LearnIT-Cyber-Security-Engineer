@@ -1,0 +1,115 @@
+LearnIt Assignment_002
+
+- Proces 1
+    
+    Nazwa procesu: foobar2000.exe
+    
+    PID/PPID: 17860/
+    
+    Uzytkownik: Lenovo
+    
+    CPU/RAM: 02%/13,3 MB
+    
+    Ścieżka: C:\Program Files\foobar2000
+    
+- Proces 2
+    
+    Nazwa procesu: Total Commander
+    
+    PID/PPID: 1964
+    
+    Uzytkownik: Lenovo
+    
+    CPU/RAM: 0%/8,4 MB
+    
+    Ścieżka:  C:\Program Files\totalcmd
+    
+- Proces 3
+    
+    Nazwa procesu: Everything
+    
+    PID/PPID: 5088
+    
+    Uzytkownik: SYSTEM
+    
+    CPU/RAM: 0%/ 0,1MB
+    
+    Ścieżka:  C:\Program Files\Everything
+    
+- Proces 4
+    
+    Nazwa procesu: Spooler SubSystem App/spoolsv.exe
+    
+    PID/PPID: 4700/
+    
+    Uzytkownik: SYSTEM
+    
+    CPU/RAM: 0%/1,0MB
+    
+    Ścieżka:  C:\Windows\System32
+    
+- Proces 5
+    
+    Nazwa procesu: Signal
+    
+    PID/PPID: 21112/
+    
+    Uzytkownik: Lenovo
+    
+    CPU/RAM: 0%/359,7MB (164,2 MB)
+    
+    Ścieżka:  C:\Users\Lenovo\AppData\Local\Programs\signal-desktop
+
+
+
+
+- Lab 2 : CPU
+    
+    model: 13th Gen Intel(R) Core(TM) i7-13705H
+    
+    architektura: x86
+    
+    rdzenie: 14
+    
+- Lab 3: konwersja
+    - 10 16 31 127 128 255
+        
+        binary: 
+        
+        1010 10000 11111 1111111 10000000 11111111
+        
+        hex:   
+        
+        0x10 0xF 0x1E 0x7F 0x80  0xFF
+        
+    - 0x0A 0x41 0x7F 0xFF
+        
+        decimal: 
+        
+        10 65 127 255
+        
+        ASCII: 
+        
+        LF A DEL  brak
+        
+    - base64 to text
+        
+        SGVsbG8=: 
+        
+        18 6 21 44 27 6 60 61
+        
+        010010 000110 010101 101100 011011 000110 111100
+        
+        01001000 01100101 01101100 01101100 01101111 00
+        
+        H e l l o
+        
+        YWRtaW4=: 
+        
+        24 22 17 45 26 22 56
+        
+        011000 010110 010001 101101 011010 010110 111000
+        
+        01100001 01100100 01101101 01101001 01101110 00
+        
+        a d m i n
